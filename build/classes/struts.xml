@@ -132,4 +132,12 @@
 		</action>
 		
 	</package>
+
+	<package name="LoginValidation" extends="struts-default">
+		<action name="GoLogin" class="com.action.GoLogin">
+			<result>/Index.jsp</result>
+			<result name="input">/Login.jsp</result>
+
+		</action>
+	</package>
 </struts>    
