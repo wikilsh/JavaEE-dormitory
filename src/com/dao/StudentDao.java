@@ -44,7 +44,7 @@ public class StudentDao {
 	}
 	//获取所有列表
 	public List<StudentBean> GetAllList(String strwhere,String strorder){
-		String sql="select * from Student";
+		String sql="select * from student";
 		if(!(isInvalid(strwhere)))
 		{
 			sql+=" where "+strwhere;
@@ -91,7 +91,7 @@ public class StudentDao {
 	}
 	//获取列表
 	public List<StudentBean> GetList(String strwhere,String strorder){
-		String sql="select * from Student,Domitory,Building where Student_DomitoryID=Domitory_ID and Domitory_BuildingID=Building_ID";
+		String sql="select * from student,domitory,building where Student_DomitoryID=Domitory_ID and Domitory_BuildingID=Building_ID";
 		if(!(isInvalid(strwhere)))
 		{
 			sql+=" and "+strwhere;

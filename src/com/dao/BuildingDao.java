@@ -10,7 +10,7 @@ public class BuildingDao {
 	
 	//获取列表
 	public List<BuildingBean> GetList(String strwhere,String strorder){
-		String sql="select * from Building";
+		String sql="select * from building";
 		if(!(isInvalid(strwhere)))
 		{
 			sql+=" where "+strwhere;

@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import com.bean.*;
 import com.dao.*;
-
+import com.db.*;
 
 public class StudentQCSave extends ActionSupport {
 

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import com.dao.*;
 import com.bean.*;
-
+import com.db.*;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class GoLogin extends ActionSupport {

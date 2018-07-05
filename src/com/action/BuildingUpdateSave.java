@@ -9,8 +9,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import com.bean.*;
 import com.dao.*;
-
-
+import com.db.*;
+import com.db.*;
 public class BuildingUpdateSave extends ActionSupport {
 
 	//下面是Action内用于封装用户请求参数的属性
