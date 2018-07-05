@@ -1,12 +1,12 @@
 package com.action;
 
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import com.bean.*;
 import com.dao.*;
 
@@ -14,8 +14,9 @@ import com.dao.*;
 public class TeacherAddSave extends ActionSupport {
 
 	//下面是Action内用于封装用户请求参数的属性
-	private String Teacher_Username ;
-    private String Teacher_Password ;
+	private String Teacher_Username;
+    private String Teacher_Password;
+    private String Teacher_Password2;
     private String Teacher_Name ;
     private String Teacher_Sex ;
     private String Teacher_Tel ;
@@ -59,10 +60,18 @@ public class TeacherAddSave extends ActionSupport {
 		Teacher_Tel = cookTel;
 	}
 
+	public String getTeacher_Password2() {
+		return Teacher_Password2;
+	}
+
+	public void setTeacher_Password2(String teacher_Password2) {
+		Teacher_Password2 = teacher_Password2;
+	}
+
 	//处理用户请求的execute方法
 	public String execute() throws Exception {
 		
-		//解决乱码，用于页面输出
+		//解决乱码，用于页面x输出
 		HttpServletResponse response=null;
 		response=ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
@@ -99,6 +108,7 @@ public class TeacherAddSave extends ActionSupport {
 		
 	}
 	
+
 	//判断是否空值
 	private boolean isInvalid(String value) {
 		return (value == null || value.length() == 0);

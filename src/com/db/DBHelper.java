@@ -8,7 +8,7 @@ public class DBHelper {
 	private String dbPassword="";
 	private String jdbcName="com.mysql.jdbc.Driver";
 	
-	//�������ݿ�
+
 	public Connection getConn(){
 		Connection conn = null;
 		try{
@@ -22,7 +22,7 @@ public class DBHelper {
 		return conn;		
 	}
 	
-//    ����
+
 	public static void main(String[] args)
 	{
 		System.out.println(new DBHelper().getConn());

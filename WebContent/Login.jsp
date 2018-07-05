@@ -40,11 +40,7 @@
 </script>
 <body>
 	<center>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br>
 		<table width="301" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td height="292" align="center" valign="top"
@@ -63,8 +59,7 @@
 											<td height="30" colspan="2" align="center" class="STYLE2"><span
 												style="color:red;"> <%
  	if (request.getAttribute("Msg") != null) {
- %>
-													<%=request.getAttribute("Msg")%> <%
+ %> <%=request.getAttribute("Msg")%> <%
  	}
  %>
 											</span></td>
