@@ -56,6 +56,8 @@ public class TeacherUpdate extends ActionSupport {
 		
 	}
 	
+	
+
 	//≈–∂œ «∑Òø’÷µ
 	private boolean isInvalid(String value) {
 		return (value == null || value.length() == 0);

@@ -20,6 +20,7 @@
 		</action>
 		<action name="TeacherUpdate" class="com.action.TeacherUpdate">
 		    <result name="success">/TeacherUpdate.jsp</result>
+		     <result name="input">/TeacherUpdate.jsp</result>
 		</action>
 		<action name="TeacherUpdateSave" class="com.action.TeacherUpdateSave">
 		</action>
@@ -139,6 +140,5 @@
 			<result name="input">/Login.jsp</result>
 		</action>
 	</package>
-	
 	
 </struts>    

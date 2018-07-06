@@ -67,11 +67,11 @@ public class StudentManager extends ActionSupport {
 		}
 		if(!(isInvalid(State)))
 		{
-			strWhere+=" and Student_State='"+State+"'";
+			strWhere+=" and "+"Student_State='"+State+"'";
 		}
 		else
 		{
-			strWhere+=" and Student_State='入住'";
+			strWhere+=" and Student_State='REGEXP '*''";
 		}
 		//查询所有
 		list=new StudentDao().GetAllList(strWhere,"Student_Name");

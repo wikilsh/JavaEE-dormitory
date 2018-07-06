@@ -41,14 +41,14 @@
 <body>
 	<center>
 		<br> <br> <br> <br> <br>
-		<table width="301" border="0" cellspacing="0" cellpadding="0">
+		<table width="1280" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td height="292" align="center" valign="top"
-					background="Images/LoginBg.jpg">
+				<td height="550" align="center" valign="top"
+					background="Images/main.jpg">
 					<table width="350" height="201" border="0" cellpadding="0"
 						cellspacing="0">
 						<tr>
-							<td height="72" align="center"><h3>校园宿舍管理系统</h3></td>
+							<td height="100" align="center"><h3>校园宿舍管理系统</h3></td>
 						</tr>
 						<tr>
 							<td align="center" valign="top">
@@ -68,7 +68,7 @@
 											<td height="30" align="right" class="STYLE2">身份：</td>
 											<td align="left"><select name="Type" id="Type">
 													<option value="">请选择</option>
-													<option value="系统管理员">系统管理员</option>
+													<option value="系统管理员">系统管	理员</option>
 													<option value="楼宇管理员">楼宇管理员</option>
 													<option value="学生">学生</option>
 											</select></td>

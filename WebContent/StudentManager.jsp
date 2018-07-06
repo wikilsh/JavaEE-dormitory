@@ -36,12 +36,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <td height="470" align="center" valign="top" bgcolor="#F6F9FE"><form name="form1" method="post" action="StudentManager.action">
                 <table width="100%%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td width="28%" height="30" style="padding-left:20px;"> 功能导航： <a href="StudentAdd.jsp">添加学生</a></td>
+                    <td width="28%" height="30" style="padding-left:20px;"> 
+                    	功能导航： <a href="StudentAdd.jsp">添加学生</a>
+                    </td>
                     <td width="72%">查询：
                       <select name="State" id="State">
+                      <option value="REGEXP '*'">全部学生</option>
                         <option value="入住">入住</option>
                         <option value="未入住">未入住</option>
                         <option value="迁出">迁出</option>
+                       
                       </select>
                       <select name="SearchRow" id="SearchRow">
                         <option value="Student_Name">姓名</option>
@@ -69,7 +73,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <td>${Student_Sex}</td>
                       <td>${Student_Class}</td>
                       <td align="center">${Student_State}</td>
-                      <td align="center"><a href="StudentUpdate.action?Student_ID=${Student_ID}">修改</a> <a href="StudentDel.action?Student_ID=${Student_ID}" onClick="return confirm('确定要删除该学生吗？')">删除</a></td>
+                      <td align="center">
+                      	<a href="StudentUpdate.action?Student_ID=${Student_ID}">修改</a> 
+                      	<a href="StudentDel.action?Student_ID=${Student_ID}" onClick="return confirm('确定要删除该学生吗？')">删除</a>
+                      </td>
                     </tr>
                   </s:iterator>
                 </table></td>

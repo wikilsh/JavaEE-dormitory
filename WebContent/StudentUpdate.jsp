@@ -110,6 +110,8 @@ return re.test(str);
                     <td><input name="Student_Class" type="text" class="text2" id="Student_Class" value="<s:property value='cnbean.Student_Class'/>"></td>
                   </tr>
                   <tr>
+                  
+                 
                     <td height="30">&nbsp;</td>
                     <td><input type="submit" name="button" id="button" value="修改学生">
                       &nbsp;&nbsp;
