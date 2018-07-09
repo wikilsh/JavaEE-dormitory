@@ -146,7 +146,7 @@ public class TBDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete TB where ";
+		String sql="delete *from TB where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;

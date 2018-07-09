@@ -353,7 +353,7 @@ public class StudentDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Student where ";
+		String sql="delete from Student where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;

@@ -166,7 +166,7 @@ public class LogDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Log where ";
+		String sql="delete *from Log where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;

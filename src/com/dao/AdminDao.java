@@ -184,7 +184,7 @@ public class AdminDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Admin where ";
+		String sql="delete * from Admin where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;

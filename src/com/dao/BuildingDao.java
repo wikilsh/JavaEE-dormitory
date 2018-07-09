@@ -141,7 +141,7 @@ public class BuildingDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Building where ";
+		String sql="delete *from Building where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;

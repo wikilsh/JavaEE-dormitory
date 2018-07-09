@@ -148,7 +148,7 @@ public class OutDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Out where ";
+		String sql="delete * from Out where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;

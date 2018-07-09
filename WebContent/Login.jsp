@@ -68,7 +68,7 @@
 											<td height="30" align="right" class="STYLE2">身份：</td>
 											<td align="left"><select name="Type" id="Type">
 													<option value="">请选择</option>
-													<option value="系统管理员">系统管	理员</option>
+													<option value="系统管理员">系统管理员</option>
 													<option value="楼宇管理员">楼宇管理员</option>
 													<option value="学生">学生</option>
 											</select></td>

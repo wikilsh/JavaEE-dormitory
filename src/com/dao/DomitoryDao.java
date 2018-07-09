@@ -151,7 +151,7 @@ public class DomitoryDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Domitory where ";
+		String sql="delete *from Domitory where ";
 		sql+=strwhere;
 		Statement stat = null;
 		ResultSet rs = null;
