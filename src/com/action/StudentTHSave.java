@@ -13,10 +13,10 @@ import com.db.*;
 
 public class StudentTHSave extends ActionSupport {
 
-	//下面是Action内用于封装用户请求参数的属性
-	private String Building_ID ;
-    private String Domitory_ID ;
-    private String Student_ID ;
+	// 下面是Action内用于封装用户请求参数的属性
+	private String Building_ID;
+	private String Domitory_ID;
+	private String Student_ID;
 
 	public String getBuilding_ID() {
 		return Building_ID;
@@ -42,45 +42,48 @@ public class StudentTHSave extends ActionSupport {
 		Student_ID = studentID;
 	}
 
-	//处理用户请求的execute方法
+	// 处理用户请求的execute方法
 	public String execute() throws Exception {
-		
-		//解决乱码，用于页面输出
-		HttpServletResponse response=null;
-		response=ServletActionContext.getResponse();
+
+		// 解决乱码，用于页面输出
+		HttpServletResponse response = null;
+		response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		//创建session对象
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		//验证是否正常登录
-		if(session.getAttribute("id")==null){
-			out.print("<script language='javascript'>alert('请重新登录！');window.location='Login.jsp';</script>");
-			out.flush();out.close();return null;
-		}
-		
 
-		//修改
-		StudentBean cnbean=new StudentBean();
-		cnbean=new StudentDao().GetBean(Integer.parseInt(Student_ID));
+		// 创建session对象
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		// 验证是否正常登录
+		if (session.getAttribute("id") == null) {
+			out.print("<script language='javascript'>alert('请重新登录！');window.location='Login.jsp';</script>");
+			out.flush();
+			out.close();
+			return null;
+		}
+
+		// 修改
+		StudentBean cnbean = new StudentBean();
+		cnbean = new StudentDao().GetBean(Integer.parseInt(Student_ID));
 		cnbean.setStudent_DomitoryID(Integer.parseInt(Domitory_ID));
 		new StudentDao().Update(cnbean);
-		    
-		//跳转
+
+		// 跳转
 		out.print("<script language='javascript'>alert('寝室调换操作成功！');window.location='StudentTH.jsp';</script>");
-		out.flush();out.close();return null;
-		
+		out.flush();
+		out.close();
+		return null;
+
 	}
-	
-	//判断是否空值
+
+	// 判断是否空值
 	private boolean isInvalid(String value) {
 		return (value == null || value.length() == 0);
 	}
-	
-	//测试
+
+	// 测试
 	public static void main(String[] args) {
 		System.out.println();
 	}
-	
+
 }

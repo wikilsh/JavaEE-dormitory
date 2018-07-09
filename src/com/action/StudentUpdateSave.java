@@ -13,13 +13,14 @@ import com.db.*;
 
 public class StudentUpdateSave extends ActionSupport {
 
-	//下面是Action内用于封装用户请求参数的属性
-	private String Student_ID ;
-    private String Student_Username ;
-    private String Student_Password ;
-    private String Student_Name ;
-    private String Student_Sex ;
-    private String Student_Class ;
+	// 下面是Action内用于封装用户请求参数的属性
+	private String Student_ID;
+	private String Student_Username;
+	private String Student_Password;
+	private String Student_Name;
+	private String Student_Sex;
+	private String Student_Class;
+
 	public String getStudent_ID() {
 		return Student_ID;
 	}
@@ -68,59 +69,64 @@ public class StudentUpdateSave extends ActionSupport {
 		Student_Class = studentClass;
 	}
 
-	//处理用户请求的execute方法
+	// 处理用户请求的execute方法
 	public String execute() throws Exception {
-		
-		//解决乱码，用于页面输出
-		HttpServletResponse response=null;
-		response=ServletActionContext.getResponse();
+
+		// 解决乱码，用于页面输出
+		HttpServletResponse response = null;
+		response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		//创建session对象
+
+		// 创建session对象
 		HttpSession session = ServletActionContext.getRequest().getSession();
-		//验证是否正常登录
-		if(session.getAttribute("id")==null){
+		// 验证是否正常登录
+		if (session.getAttribute("id") == null) {
 			out.print("<script language='javascript'>alert('请重新登录！');window.location='Login.jsp';</script>");
-			out.flush();out.close();return null;
+			out.flush();
+			out.close();
+			return null;
 		}
-		
-		//查询用户名是否存在
-		List<StudentBean> list=new StudentDao().GetList("Student_Username='"+Student_Username+"' and Student_ID!="+Student_ID, "");
-		if(list.size()>0)
-		{
+
+		// 查询用户名是否存在
+		List<StudentBean> list = new StudentDao()
+				.GetList("Student_Username='" + Student_Username + "' and Student_ID!=" + Student_ID, "");
+		if (list.size() > 0) {
 			out.print("<script language='javascript'>alert('用户名已经存在！');history.back(-1);</script>");
-			out.flush();out.close();return null;
+			out.flush();
+			out.close();
+			return null;
 		}
-		//修改
-		
-		StudentBean cnbean=new StudentBean();
-		cnbean=new StudentDao().GetAllBean(Integer.parseInt(Student_ID));
+		// 修改
+
+		StudentBean cnbean = new StudentBean();
+		cnbean = new StudentDao().GetAllBean(Integer.parseInt(Student_ID));
 		cnbean.setStudent_Username(Student_Username);
 		cnbean.setStudent_Name(Student_Name);
 		cnbean.setStudent_Sex(Student_Sex);
 		cnbean.setStudent_Class(Student_Class);
-		if(!(isInvalid(Student_Password)))
-		{
+		if (!(isInvalid(Student_Password))) {
 			cnbean.setStudent_Password(Student_Password);
 		}
 		new StudentDao().Update(cnbean);
-		    
-		//跳转
+
+		// 跳转
 		out.print("<script language='javascript'>alert('修改成功！');window.location='StudentManager.action';</script>");
-		out.flush();out.close();return null;
-		
+		out.flush();
+		out.close();
+		return null;
+
 	}
-	
-	//判断是否空值
+
+	// 判断是否空值
 	private boolean isInvalid(String value) {
 		return (value == null || value.length() == 0);
 	}
-	
-	//测试
+
+	// 测试
 	public static void main(String[] args) {
 		System.out.println();
 	}
-	
+
 }

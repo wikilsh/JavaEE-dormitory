@@ -44,11 +44,11 @@
 			alert("请输入联系电话！");
 			return false;
 		}
-
+		//判断手机号码合法性
 		var tel = form1.Teacher_Tel.value
 		if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(tel))) {
-			alert("手机号格式不正确，请重新输入！");
-			document.mobileform.mobile.focus();
+			alert("联系电话号格式不正确，请重新输入！");
+			//document.mobileform.mobile.focus();
 			return false;
 		}
 	}

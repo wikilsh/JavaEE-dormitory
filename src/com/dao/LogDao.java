@@ -8,28 +8,26 @@ import java.util.*;
 import java.sql.*;
 
 public class LogDao {
-	
-	//获取列表
-	public List<LogBean> GetList(String strwhere,String strorder){
-		String sql="select * from Log,Teacher,Student,Domitory,Building where Log_TeacherID=Teacher_ID and Log_StudentID=Student_ID and Student_DomitoryID=Domitory_ID and Domitory_BuildingID=Building_ID";
-		if(!(isInvalid(strwhere)))
-		{
-			sql+=" and "+strwhere;
+
+	// 获取列表
+	public List<LogBean> GetList(String strwhere, String strorder) {
+		String sql = "select * from Log,Teacher,Student,Domitory,Building where Log_TeacherID=Teacher_ID and Log_StudentID=Student_ID and Student_DomitoryID=Domitory_ID and Domitory_BuildingID=Building_ID";
+		if (!(isInvalid(strwhere))) {
+			sql += " and " + strwhere;
 		}
-		if(!(isInvalid(strorder)))
-		{
-			sql+=" order by "+strorder;
+		if (!(isInvalid(strorder))) {
+			sql += " order by " + strorder;
 		}
-//		System.out.println(sql);
+		// System.out.println(sql);
 		Statement stat = null;
 		ResultSet rs = null;
 		Connection conn = new DBHelper().getConn();
-		List<LogBean> list=new ArrayList<LogBean>();
-		try{
+		List<LogBean> list = new ArrayList<LogBean>();
+		try {
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
-			while(rs.next()){
-				LogBean cnbean=new LogBean();
+			while (rs.next()) {
+				LogBean cnbean = new LogBean();
 				cnbean.setLog_ID(rs.getInt("Log_ID"));
 				cnbean.setLog_StudentID(rs.getInt("Log_StudentID"));
 				cnbean.setLog_TeacherID(rs.getInt("Log_TeacherID"));
@@ -62,18 +60,19 @@ public class LogDao {
 		}
 		return list;
 	}
-	
-	//获取指定ID的实体Bean
-	public LogBean GetBean(int id){
-		String sql="select * from Log,Teacher,Student,Domitory,Building where Log_TeacherID=TeacherID and Log_StudentID=Student_ID and Student_DomitoryID=Domitory_ID and Domitory_BuildingID=Building_ID and Log_ID="+id;
+
+	// 获取指定ID的实体Bean
+	public LogBean GetBean(int id) {
+		String sql = "select * from Log,Teacher,Student,Domitory,Building where Log_TeacherID=TeacherID and Log_StudentID=Student_ID and Student_DomitoryID=Domitory_ID and Domitory_BuildingID=Building_ID and Log_ID="
+				+ id;
 		Statement stat = null;
 		ResultSet rs = null;
 		Connection conn = new DBHelper().getConn();
-		LogBean cnbean=new LogBean();
-		try{
+		LogBean cnbean = new LogBean();
+		try {
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
-			while(rs.next()){
+			while (rs.next()) {
 				cnbean.setLog_ID(rs.getInt("Log_ID"));
 				cnbean.setLog_StudentID(rs.getInt("Log_StudentID"));
 				cnbean.setLog_TeacherID(rs.getInt("Log_TeacherID"));
@@ -105,73 +104,19 @@ public class LogDao {
 		}
 		return cnbean;
 	}
-	
-	//添加
-	public void Add(LogBean cnbean){
-		String sql="insert into Log (";
-		sql+="Log_StudentID,Log_TeacherID,Log_Date,Log_Remark";
-		sql+=") values(";
-		sql+="'"+cnbean.getLog_StudentID()+"','"+cnbean.getLog_TeacherID()+"','"+cnbean.getLog_Date()+"','"+cnbean.getLog_Remark()+"'";
-		sql+=")";
+
+	// 添加
+	public void Add(LogBean cnbean) {
+		String sql = "insert into Log (";
+		sql += "Log_StudentID,Log_TeacherID,Log_Date,Log_Remark";
+		sql += ") values(";
+		sql += "'" + cnbean.getLog_StudentID() + "','" + cnbean.getLog_TeacherID() + "','" + cnbean.getLog_Date()
+				+ "','" + cnbean.getLog_Remark() + "'";
+		sql += ")";
 		Statement stat = null;
 		ResultSet rs = null;
 		Connection conn = new DBHelper().getConn();
-		try{
-			stat = conn.createStatement();
-			stat.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conn != null)
-					conn.close();
-				if (stat != null)
-					stat.close();
-				if (rs != null)
-					rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	//修改
-	public void Update(LogBean cnbean){
-		String sql="update Log set ";
-		sql+="Log_StudentID='"+cnbean.getLog_StudentID()+"',";
-		sql+="Log_TeacherID='"+cnbean.getLog_TeacherID()+"',";
-		sql+="Log_Date='"+cnbean.getLog_Date()+"',";
-		sql+="Log_Remark='"+cnbean.getLog_Remark()+"'";
-		
-		sql+=" where Log_ID='"+cnbean.getLog_ID()+"'";
-		Statement stat = null;
-		ResultSet rs = null;
-		Connection conn = new DBHelper().getConn();
-		try{
-			stat = conn.createStatement();
-			stat.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conn != null)
-					conn.close();
-				if (stat != null)
-					stat.close();
-				if (rs != null)
-					rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	//删除
-	public void Delete(String strwhere){
-		String sql="delete *from Log where ";
-		sql+=strwhere;
-		Statement stat = null;
-		ResultSet rs = null;
-		Connection conn = new DBHelper().getConn();
-		try{
+		try {
 			stat = conn.createStatement();
 			stat.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -190,16 +135,71 @@ public class LogDao {
 		}
 	}
 
-	
-	//判断是否空值
+	// 修改
+	public void Update(LogBean cnbean) {
+		String sql = "update Log set ";
+		sql += "Log_StudentID='" + cnbean.getLog_StudentID() + "',";
+		sql += "Log_TeacherID='" + cnbean.getLog_TeacherID() + "',";
+		sql += "Log_Date='" + cnbean.getLog_Date() + "',";
+		sql += "Log_Remark='" + cnbean.getLog_Remark() + "'";
+
+		sql += " where Log_ID='" + cnbean.getLog_ID() + "'";
+		Statement stat = null;
+		ResultSet rs = null;
+		Connection conn = new DBHelper().getConn();
+		try {
+			stat = conn.createStatement();
+			stat.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null)
+					conn.close();
+				if (stat != null)
+					stat.close();
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// 删除
+	public void Delete(String strwhere) {
+		String sql = "delete from Log where ";
+		sql += strwhere;
+		Statement stat = null;
+		ResultSet rs = null;
+		Connection conn = new DBHelper().getConn();
+		try {
+			stat = conn.createStatement();
+			stat.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null)
+					conn.close();
+				if (stat != null)
+					stat.close();
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// 判断是否空值
 	private boolean isInvalid(String value) {
 		return (value == null || value.length() == 0);
 	}
-	
-	//测试
+
+	// 测试
 	public static void main(String[] args) {
 		System.out.println("");
 	}
-	
-}
 
+}

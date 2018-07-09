@@ -14,9 +14,10 @@ import com.db.*;
 
 public class StudentQCSave extends ActionSupport {
 
-	//下面是Action内用于封装用户请求参数的属性
-	private String Student_ID ;
-	private String Out_Remark ;
+	// 下面是Action内用于封装用户请求参数的属性
+	private String Student_ID;
+	private String Out_Remark;
+
 	public String getOut_Remark() {
 		return Out_Remark;
 	}
@@ -33,61 +34,66 @@ public class StudentQCSave extends ActionSupport {
 		Student_ID = studentID;
 	}
 
-	//处理用户请求的execute方法
+	// 处理用户请求的execute方法
 	public String execute() throws Exception {
-		
-		//解决乱码，用于页面输出
-		HttpServletResponse response=null;
-		response=ServletActionContext.getResponse();
+
+		// 解决乱码，用于页面输出
+		HttpServletResponse response = null;
+		response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		//创建session对象
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		//验证是否正常登录
-		if(session.getAttribute("id")==null){
-			out.print("<script language='javascript'>alert('请重新登录！');window.location='Login.jsp';</script>");
-			out.flush();out.close();return null;
-		}
-		
 
-		//修改学生状态
-		StudentBean cnbean=new StudentBean();
-		cnbean=new StudentDao().GetBean(Integer.parseInt(Student_ID));
+		// 创建session对象
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		// 验证是否正常登录
+		if (session.getAttribute("id") == null) {
+			out.print("<script language='javascript'>alert('请重新登录！');window.location='Login.jsp';</script>");
+			out.flush();
+			out.close();
+			return null;
+		}
+
+		// 修改学生状态
+		StudentBean cnbean = new StudentBean();
+		cnbean = new StudentDao().GetBean(Integer.parseInt(Student_ID));
 		cnbean.setStudent_State("迁出");
 		new StudentDao().Update(cnbean);
-		
-		//添加迁出记录
-		OutBean outbean=new OutBean();
+
+		// 添加迁出记录
+		OutBean outbean = new OutBean();
 		outbean.setOut_StudentID(Integer.parseInt(Student_ID));
 		outbean.setOut_Date(getNowdate());
 		outbean.setOut_Remark(Out_Remark);
 
 		new OutDao().Add(outbean);
-		    
-		//跳转
+
+		// 跳转
 		out.print("<script language='javascript'>alert('学生迁出操作成功！');window.location='StudentTH.jsp';</script>");
-		out.flush();out.close();return null;
-		
+		out.flush();
+		out.close();
+		return null;
+
 	}
-	//获取当前日期
-	public String getNowdate(){
-		Calendar c=Calendar.getInstance();
+
+	// 获取当前日期
+	public String getNowdate() {
+		Calendar c = Calendar.getInstance();
 		c.add(Calendar.MONTH, 1);
-		int year=c.get(Calendar.YEAR);
-		int month=c.get(Calendar.MONTH);
-		int date=c.get(Calendar.DATE);
-		return year+"-"+month+"-"+date;
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH);
+		int date = c.get(Calendar.DATE);
+		return year + "-" + month + "-" + date;
 	}
-	//判断是否空值
+
+	// 判断是否空值
 	private boolean isInvalid(String value) {
 		return (value == null || value.length() == 0);
 	}
-	
-	//测试
+
+	// 测试
 	public static void main(String[] args) {
 		System.out.println();
 	}
-	
+
 }
