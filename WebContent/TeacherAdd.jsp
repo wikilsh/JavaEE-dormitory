@@ -28,7 +28,8 @@
 			alert("请输入重复密码！");
 			return false;
 		}
-		if (document.form1.Teacher_Password.value != document.form1.Teacher_Password2.value) {
+		if (document.form1.Teacher_Password.value 
+			!= document.form1.Teacher_Password2.value) {
 			alert("您两次输入的新密码不一致！请重新输入！");
 			return false;
 		}
